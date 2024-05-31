@@ -22,6 +22,15 @@
     <Filter Include="Sources\Scene">
       <UniqueIdentifier>{cdfccb77-a0ca-4c16-afb0-aa1281ecfcb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Graphics">
+      <UniqueIdentifier>{0741dfe6-15d9-4737-b981-35ff5a5de6c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\System">
+      <UniqueIdentifier>{a64f61c5-81d3-4914-92cc-51ed17f10ca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\System\ClassBase">
+      <UniqueIdentifier>{1e228d5b-80ef-4fb8-9c05-736d455868f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Framework.cpp">
@@ -53,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="External\imgui\imgui_widgets.cpp">
       <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Graphics.cpp">
+      <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +109,16 @@
     </ClInclude>
     <ClInclude Include="External\imgui\imstb_truetype.h">
       <Filter>External\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Graphics.h" />
+    <ClInclude Include="Source\System\ClassBase\CopyDisable.h">
+      <Filter>Sources\System\ClassBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\ClassBase\MoveDisable.h">
+      <Filter>Sources\System\ClassBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\ClassBase\Singleton.h">
+      <Filter>Sources\System\ClassBase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
