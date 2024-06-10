@@ -153,15 +153,6 @@
     <ClInclude Include="Source\Character.h">
       <Filter>Source\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Enemy.h">
-      <Filter>Source\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EnemyManager.h">
-      <Filter>Source\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EnemySlime.h">
-      <Filter>Source\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Player.h">
       <Filter>Source\Character</Filter>
     </ClInclude>
@@ -294,15 +285,6 @@
       <Filter>Source\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Source\Character.cpp">
-      <Filter>Source\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Enemy.cpp">
-      <Filter>Source\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EnemyManager.cpp">
-      <Filter>Source\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EnemySlime.cpp">
       <Filter>Source\Character</Filter>
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">

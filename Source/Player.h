@@ -37,9 +37,6 @@ protected:
     // 移動入力処理[03]
     bool InputMove(float elapsedTime);
 
-    // プレイヤーとエネミーとの衝突処理[05]
-    void CollisionPlayerVsEnemies();
-
     // ジャンプ入力処理[06]
     bool InputJump();
 
@@ -52,16 +49,7 @@ protected:
     // 死亡した時に呼ばれる処理
     void OnDead() override;
 
-    // 弾丸と敵の衝突処理[08]
-    void CollisionProjectilesVsEnemis();
-
-    // ノードと敵の衝突処理[19]
-    void CollisionNodeVsEnemis(const char* nodeName,float nodeRadiuns);
-
 private:
-    // 弾丸入力処理[07]
-    void InputProjectile();
-
     // 待機ステートへ遷移[18]
     void TransitionIdleState();
 

@@ -2,8 +2,6 @@
 
 #include "Player.h"
 #include "CameraController.h"
-#include "EnemyManager.h"
-#include "EnemySlime.h"
 #include "Scene.h"
 #include "Graphics/Sprite.h"	// [13]
 #include "StageMain.h"
