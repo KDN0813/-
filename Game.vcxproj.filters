@@ -171,9 +171,6 @@
     <ClInclude Include="Source\StageMain.h">
       <Filter>Source\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StageMoveFloor.h">
-      <Filter>Source\Stage</Filter>
-    </ClInclude>
     <ClInclude Include="Source\StageManager.h">
       <Filter>Source\Stage</Filter>
     </ClInclude>
@@ -288,9 +285,6 @@
       <Filter>Source\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Source\StageMain.cpp">
-      <Filter>Source\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StageMoveFloor.cpp">
       <Filter>Source\Stage</Filter>
     </ClCompile>
     <ClCompile Include="Source\StageManager.cpp">

@@ -5,7 +5,6 @@
 
 #include "EffectManager.h"
 #include "StageManager.h"
-#include "StageMoveFloor.h"
 
 #include "Input/Input.h"
 
@@ -16,12 +15,6 @@ void SceneGame::Initialize()
 	StageManager& stageManager = StageManager::Instance();
 	this->stageMain = new StageMain();
 	stageManager.Register(stageMain);
-
-	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
-	stageMoveFloor->SetStartPoint(DirectX::XMFLOAT3(.0f, 1.0f, 3.0f));
-	stageMoveFloor->SetGoalPoint(DirectX::XMFLOAT3(10.0f, 2.0f, 3.0f));
-	stageMoveFloor->SetTorque(DirectX::XMFLOAT3(.0f, 1.0f, .0f));
-	stageManager.Register(stageMoveFloor);
 
 	player = new Player();
 
