@@ -34,9 +34,6 @@
     <Filter Include="Source\Shader">
       <UniqueIdentifier>{1d3f7542-7ae1-4ca7-9295-955b24450a6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Sprite">
-      <UniqueIdentifier>{fdbe5c09-b820-47c7-b85f-dbbea1fdd9a6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Model">
       <UniqueIdentifier>{bb3b288b-eb52-4dd8-921b-f00eef452d7b}</UniqueIdentifier>
     </Filter>
@@ -123,9 +120,6 @@
     <ClInclude Include="Source\Graphics\LambertShader.h">
       <Filter>Source\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Sprite.h">
-      <Filter>Source\Sprite</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\ModelResource.h">
       <Filter>Source\Model</Filter>
     </ClInclude>
@@ -196,9 +190,6 @@
     </ClCompile>
     <ClCompile Include="Source\Graphics\LineRenderer.cpp">
       <Filter>Source\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Sprite.cpp">
-      <Filter>Source\Sprite</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Model.cpp">
       <Filter>Source\Model</Filter>

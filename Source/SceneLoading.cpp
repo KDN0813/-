@@ -6,9 +6,6 @@
 // 初期化[11]
 void SceneLoading::Initialize()
 {
-    // スプライト初期化[10]
-    sprite = new Sprite("Data/Sprite/LoadingIcon.png");
-
     // スレッド開始
     //=(メ)次のシーンのスレッドを立ち上げる(自己解)
     thread = new std::thread(LoadingThred, this);
@@ -25,22 +22,11 @@ void SceneLoading::Finalize()
         thread = nullptr;
     }
     nextScene = nullptr;
-
-    // スプライト終了化[10]
-    if (sprite != nullptr)
-    {
-        delete sprite;
-        sprite = nullptr;
-    }
 }
 
 // 更新処理[11]
 void SceneLoading::Update(float elapsedTime)
 {
-    // 画像回転
-    constexpr float speed = 180;
-    angle += speed * elapsedTime;
-
     // 次のシーンの準備が完了したらシーンを切り替える(自己解)
     
     // シーンの準備が完了したら
@@ -84,23 +70,6 @@ void SceneLoading::Render()
 
     // 2Dスプライト描画
     {
-        // 画面下にローディングアイコンを描画
-        float screenWidth       = static_cast<float>(graphics.GetScreenWidth());    //スクリーン幅
-        float screenHeight      = static_cast<float>(graphics.GetScreenHeight());   // スクリーン高さ
-        float textureWidth      = static_cast<float>(sprite->GetTextureWidth());    // テクスチャ幅
-        float textureHeight     = static_cast<float>(sprite->GetTextureHeight());   // テクスチャ高さ
-        float positionX         = screenWidth - textureWidth;                       // 表示する座標(X)
-        float positionY         = screenHeight - textureHeight;                     // 表示する座標(Y)
-    
-        sprite->Render(
-            dc
-            , positionX, positionY                                                  // 描画位置
-            , textureWidth, textureHeight                                           // 描画サイズ
-            , 0, 0                                                                  // 描画位置
-            , textureWidth, textureHeight                                           // 画像の幅・高さ
-            , angle                                                                 //角度
-            , 1, 1, 1, 1                                                            //色
-        );
     }
 }
 

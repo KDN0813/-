@@ -23,21 +23,11 @@ void SceneGame::Initialize()
 
 	// カメラコントローラー初期化[02]
 	cameraController = new CameraController();
-
-	// ゲージスプライト[13]
-	gauge = new Sprite();
 }
 
 // 終了化
 void SceneGame::Finalize()
 {
-	// ゲージスプライト終了化[13]
-	if (gauge != nullptr)
-	{
-		delete gauge;
-		gauge = nullptr;
-	}
-
 	// カメラコントローラー終了か
 	if (cameraController != nullptr)
 	{

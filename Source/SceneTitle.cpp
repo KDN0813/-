@@ -8,18 +8,11 @@
 // 初期化[11]
 void SceneTitle::Initialize()
 {
-    sprite = new Sprite("Data/Sprite/Title.png");
 }
 
 // 終了化[11]
 void SceneTitle::Finalize()
 {
-    // スプライト終了化
-    if (sprite != nullptr)
-    {
-        delete sprite;
-        sprite = nullptr;
-    }
 }
 
 // 更新処理[11]
@@ -43,16 +36,5 @@ void SceneTitle::Render()
 
     // 2Dスプライト描画
     {
-        float screenWidth   = static_cast<float>(graphics.GetScreenWidth());
-        float screenHeight  = static_cast<float>(graphics.GetScreenHeight());
-        float textureWidth  = static_cast<float>(sprite->GetTextureWidth());
-        float textureHeight = static_cast<float>(sprite->GetTextureHeight());
-        // タイトルスプライト描画
-        sprite->Render(dc
-            , 0, 0, screenWidth, screenHeight
-            , 0, 0, textureWidth, textureHeight
-            , 0
-            , 1, 1, 1, 1
-        );
     }
 }

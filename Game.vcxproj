@@ -126,7 +126,6 @@
     <ClInclude Include="Source\Graphics\ModelResource.h" />
     <ClInclude Include="Source\Graphics\RenderContext.h" />
     <ClInclude Include="Source\Graphics\Shader.h" />
-    <ClInclude Include="Source\Graphics\Sprite.h" />
     <ClInclude Include="Source\HighResolutionTimer.h" />
     <ClInclude Include="Source\Logger.h" />
     <ClInclude Include="Source\Mathf.h" />
@@ -154,7 +153,6 @@
     <ClCompile Include="Source\Graphics\LineRenderer.cpp" />
     <ClCompile Include="Source\Graphics\Model.cpp" />
     <ClCompile Include="Source\Graphics\ModelResource.cpp" />
-    <ClCompile Include="Source\Graphics\Sprite.cpp" />
     <ClCompile Include="Source\Logger.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Mathf.cpp" />

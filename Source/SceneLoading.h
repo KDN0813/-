@@ -1,5 +1,4 @@
 #pragma once
-#include "Graphics/Sprite.h"
 #include "Scene.h"
 #include <thread>   // [11]
 
@@ -28,8 +27,6 @@ private:
 
 private:
     // [11]
-    Sprite*         sprite      = nullptr;
-    float           angle       = 0.0f;
     Scene*          nextScene   = nullptr;
     std::thread*    thread      = nullptr;
 };

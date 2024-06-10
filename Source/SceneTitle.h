@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Graphics/Sprite.h"
 #include "Scene.h"
 
 // タイトルシーン[10]
@@ -23,6 +22,5 @@ public:
     void Render() override;
 
 private:
-    Sprite* sprite = nullptr;
 };
 
