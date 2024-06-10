@@ -3,7 +3,6 @@
 #include "CameraController.h"
 #include "Scene.h"
 #include "Graphics/Sprite.h"	// [13]
-#include "StageMain.h"
 
 // ƒQ[ƒ€ƒV[ƒ“
 class SceneGame : public Scene
@@ -38,5 +37,4 @@ private:
 
 	// [13]
 	Sprite* gauge						= nullptr;
-	StageMain* stageMain				= nullptr;
 };

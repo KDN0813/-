@@ -3,16 +3,9 @@
 
 #include "Camera.h"
 
-#include "StageManager.h"
-
 // 初期化[01]
 void SceneGame::Initialize()
 {
-	// ステージ初期化
-	StageManager& stageManager = StageManager::Instance();
-	this->stageMain = new StageMain();
-	stageManager.Register(stageMain);
-
 	// カメラ初期設定[02]
 	Graphics& graphics = Graphics::Instance();
 	Camera& camera = Camera::Intance();
@@ -45,9 +38,6 @@ void SceneGame::Finalize()
 		gauge = nullptr;
 	}
 
-	// ステージ終了化
-	StageManager::Instance().Clear();
-
 	// カメラコントローラー終了か
 	if (cameraController != nullptr)
 	{
@@ -62,8 +52,6 @@ void SceneGame::Update(float elapsedTime)
 	// カメラコントローラー更新処理
 	cameraController->SetTarget(target);
 	cameraController->Update(elapsedTime);
-	// ステージ更新処理
-	StageManager::Instance().Update(elapsedTime);
 }
 
 // 描画処理
@@ -94,9 +82,6 @@ void SceneGame::Render()
 		Shader* shader = graphics.GetShader();
 
 		shader->Begin(dc, rc);
-
-		// ステージ描画
-		StageManager::Instance().Render(dc, shader);
 
 		shader->End(dc);
 	}
