@@ -116,7 +116,6 @@
     <ClInclude Include="External\imgui\imstb_truetype.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\CameraController.h" />
-    <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\Collision.h" />
     <ClInclude Include="Source\Framework.h" />
     <ClInclude Include="Source\Graphics\DebugRenderer.h" />
@@ -136,7 +135,6 @@
     <ClInclude Include="Source\Logger.h" />
     <ClInclude Include="Source\Mathf.h" />
     <ClInclude Include="Source\Misc.h" />
-    <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\ResourceManager.h" />
     <ClInclude Include="Source\Scene.h" />
     <ClInclude Include="Source\SceneGame.h" />
@@ -155,7 +153,6 @@
     <ClCompile Include="External\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\CameraController.cpp" />
-    <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Framework.cpp" />
     <ClCompile Include="Source\Graphics\DebugRenderer.cpp" />
@@ -172,7 +169,6 @@
     <ClCompile Include="Source\Logger.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Mathf.cpp" />
-    <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\ResourceManager.cpp" />
     <ClCompile Include="Source\SceneGame.cpp" />
     <ClCompile Include="Source\SceneLoading.cpp" />

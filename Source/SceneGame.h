@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Player.h"
 #include "CameraController.h"
 #include "Scene.h"
 #include "Graphics/Sprite.h"	// [13]
@@ -34,8 +33,8 @@ private:
 	);
 
 private:
-	Player* player						= nullptr;
 	CameraController* cameraController	= nullptr;
+	DirectX::XMFLOAT3 target{};
 
 	// [13]
 	Sprite* gauge						= nullptr;

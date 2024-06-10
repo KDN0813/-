@@ -15,8 +15,6 @@ void SceneGame::Initialize()
 	this->stageMain = new StageMain();
 	stageManager.Register(stageMain);
 
-	player = new Player();
-
 	// カメラ初期設定[02]
 	Graphics& graphics = Graphics::Instance();
 	Camera& camera = Camera::Intance();
@@ -52,13 +50,6 @@ void SceneGame::Finalize()
 	// ステージ終了化
 	StageManager::Instance().Clear();
 
-	// プレイヤー終了化
-	if (player != nullptr)
-	{
-		delete player;
-		player = nullptr;
-	}
-
 	// カメラコントローラー終了か
 	if (cameraController != nullptr)
 	{
@@ -71,14 +62,10 @@ void SceneGame::Finalize()
 void SceneGame::Update(float elapsedTime)
 {
 	// カメラコントローラー更新処理
-	DirectX::XMFLOAT3 target = player->GetPosition();
-	target.y += 0.5f;	// プレイヤーの腰当たりをターゲットに設定
 	cameraController->SetTarget(target);
 	cameraController->Update(elapsedTime);
 	// ステージ更新処理
 	StageManager::Instance().Update(elapsedTime);
-	// プレイヤー更新処理
-	player->Update(elapsedTime);
 }
 
 // 描画処理
@@ -112,8 +99,6 @@ void SceneGame::Render()
 
 		// ステージ描画
 		StageManager::Instance().Render(dc, shader);
-		// プレイヤー描画
-		player->Render(dc, shader);
 
 		shader->End(dc);
 	}
@@ -124,8 +109,6 @@ void SceneGame::Render()
 
 	// 3Dデバッグ描画
 	{
-		// プレイヤーデバックプリミティブ描画[05]
-		player->DarwDebugPrimitive();
 
 		// ラインレンダラ描画実行
 		graphics.GetLineRenderer()->Render(dc, rc.view, rc.projection);
@@ -147,10 +130,14 @@ void SceneGame::Render()
 		ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_FirstUseEver);
 		ImGui::SetNextWindowSize(ImVec2(300, 400), ImGuiCond_FirstUseEver);
 
-		// プレイヤーデバッグ描画
-		player->DrawDebugGUI();
 		// カメラコントローラーデバッグ描画
 		cameraController->DrawDebugGUI();
+
+		if (ImGui::Begin("Camera", nullptr, ImGuiWindowFlags_None))
+		{
+			ImGui::DragFloat3("target", &target.x, 0.01f);
+		}
+		ImGui::End();
 
 		ImGui::PopStyleColor();
 		ImGui::PopStyleColor();

@@ -31,9 +31,6 @@
     <Filter Include="Source\Camera">
       <UniqueIdentifier>{a52563bd-e3c9-4717-bb85-4f2f7db36ba8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Character">
-      <UniqueIdentifier>{baf4f3e6-7721-4ab6-adc9-ad7ed0f7d90a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Scene">
       <UniqueIdentifier>{ca6d74c2-93d3-4d60-8896-3b3611a6adf8}</UniqueIdentifier>
     </Filter>
@@ -128,12 +125,6 @@
     </ClInclude>
     <ClInclude Include="Source\CameraController.h">
       <Filter>Source\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Character.h">
-      <Filter>Source\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Player.h">
-      <Filter>Source\Character</Filter>
     </ClInclude>
     <ClInclude Include="Source\SceneTitle.h">
       <Filter>Source\Scene</Filter>
@@ -232,12 +223,6 @@
     </ClCompile>
     <ClCompile Include="Source\CameraController.cpp">
       <Filter>Source\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Character.cpp">
-      <Filter>Source\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
-      <Filter>Source\Character</Filter>
     </ClCompile>
     <ClCompile Include="Source\SceneGame.cpp">
       <Filter>Source\Scene</Filter>
