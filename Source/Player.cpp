@@ -6,8 +6,6 @@
 #include "Graphics/Graphics.h"
 #include "Collision.h"
 
-#include "ProjectileHoming.h"
-
 static Player* instance = nullptr;
 
 // コンストラクタ[03]
@@ -79,9 +77,6 @@ void Player::Update(float elapsedTime)
 
     // 無敵時間更新
     UpdateInvincibleTimer(elapsedTime);
-
-    // 弾丸更新処理
-    projectileManager.Update(elapsedTime);
 
     // モデルアニメーション更新処理
     model->UpdateAnimation(elapsedTime);
@@ -163,7 +158,6 @@ bool Player::InputMove(float elapsedTime)
 void Player::Render(ID3D11DeviceContext* dc, Shader* shader)
 {
     shader->Draw(dc, model);
-    projectileManager.Render(dc, shader);
 }
 
 // デバッグ用GUI描画[03]
@@ -197,9 +191,6 @@ void Player::DrawDebugGUI()
             // ジャンプリミット
             ImGui::InputInt("jumpLimit", &jumpLimit);
         };
-
-        // projectileの数
-        ImGui::Text("projectileNum:%ld",projectileManager.GetProjectileCount());
     }
     ImGui::End();
 }
@@ -215,9 +206,6 @@ void Player::DarwDebugPrimitive()
 
     // 衝突判定用のデバッグ円柱を描画[06]
     debugRender->DrawCylinder(position, radius, height, DirectX::XMFLOAT4(0, 0, 0, 1));
-
-    // 弾丸デバックプリミティブ描画
-    projectileManager.DrawDebugPrimitive();
 
     // 攻撃衝突用の左手ノードのデバッグ球を描画
     if (attackCollisionFlag)

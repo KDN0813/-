@@ -4,9 +4,6 @@
 #include "Graphics/Model.h"
 #include "Character.h"
 
-#include "ProjectileManager.h"
-#include"ProjectileStraight.h"
-
 #include "Effect.h"
 
 class Player : public Character
@@ -140,9 +137,6 @@ private:
     float JumpSpeed     = 20.0f;
     int jumpCount       = 0;
     int jumpLimit       = 3;
-
-    // [07]
-    ProjectileManager   projectileManager;
 
     // [10]
     Effect*hitEffect    = nullptr;

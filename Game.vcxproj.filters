@@ -37,9 +37,6 @@
     <Filter Include="Source\Character">
       <UniqueIdentifier>{baf4f3e6-7721-4ab6-adc9-ad7ed0f7d90a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Projectile">
-      <UniqueIdentifier>{342b69f9-2e9e-475b-be52-c33caca7bfbf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Scene">
       <UniqueIdentifier>{ca6d74c2-93d3-4d60-8896-3b3611a6adf8}</UniqueIdentifier>
     </Filter>
@@ -155,18 +152,6 @@
     </ClInclude>
     <ClInclude Include="Source\Player.h">
       <Filter>Source\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Projectile.h">
-      <Filter>Source\Projectile</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ProjectileHoming.h">
-      <Filter>Source\Projectile</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ProjectileManager.h">
-      <Filter>Source\Projectile</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ProjectileStraight.h">
-      <Filter>Source\Projectile</Filter>
     </ClInclude>
     <ClInclude Include="Source\SceneTitle.h">
       <Filter>Source\Scene</Filter>
@@ -289,18 +274,6 @@
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
       <Filter>Source\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Projectile.cpp">
-      <Filter>Source\Projectile</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ProjectileHoming.cpp">
-      <Filter>Source\Projectile</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ProjectileManager.cpp">
-      <Filter>Source\Projectile</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ProjectileStraight.cpp">
-      <Filter>Source\Projectile</Filter>
     </ClCompile>
     <ClCompile Include="Source\SceneGame.cpp">
       <Filter>Source\Scene</Filter>
