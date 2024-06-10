@@ -4,8 +4,6 @@
 #include "Graphics/Model.h"
 #include "Character.h"
 
-#include "Effect.h"
-
 class Player : public Character
 {
 public:
@@ -137,9 +135,6 @@ private:
     float JumpSpeed     = 20.0f;
     int jumpCount       = 0;
     int jumpLimit       = 3;
-
-    // [10]
-    Effect*hitEffect    = nullptr;
 
     // [18]
     State state         = State::Idle;

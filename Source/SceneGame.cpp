@@ -3,7 +3,6 @@
 
 #include "Camera.h"
 
-#include "EffectManager.h"
 #include "StageManager.h"
 
 #include "Input/Input.h"
@@ -80,9 +79,6 @@ void SceneGame::Update(float elapsedTime)
 	StageManager::Instance().Update(elapsedTime);
 	// プレイヤー更新処理
 	player->Update(elapsedTime);
-
-	// エフェクト更新処理[10]
-	EffectManager::Instance().Update(elapsedTime);
 }
 
 // 描画処理
@@ -124,7 +120,6 @@ void SceneGame::Render()
 
 	// 3Dエフェクト描画
 	{
-		EffectManager::Instance().Render(rc.view, rc.projection);
 	}
 
 	// 3Dデバッグ描画

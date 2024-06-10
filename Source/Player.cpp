@@ -16,9 +16,6 @@ Player::Player()
 
     scale.x = scale.y = scale.z = 0.01f;
 
-    // ヒットエフェクト読み込み[10]
-    hitEffect = new Effect("Data/Effect/test02.efk");
-
     //// 待機ステートへ遷移
     TransitionIdleState();
 
@@ -28,8 +25,6 @@ Player::Player()
 // [03]
 Player::~Player()
 {
-    // エフェクト削除[10]
-    delete hitEffect;
 
     delete model;
 
