@@ -1,21 +1,10 @@
 #include <imgui.h>//[org]
 #include "CameraController.h"
 #include "Camera.h"
-#include "Input/Input.h"
 
 // 更新処理[02]
 void CameraController::Update(float elapsedTime)
-{
-    GamePad& gamePad = Input::Instance().GetGamePad();
-    float ax = gamePad.GetAxisRX();
-    float ay = gamePad.GetAxisRY();
-    // カメラの回転速度[02]
-    float speed = rollSpeed * elapsedTime;
-    
-    // スティック入力値に合わせてX軸とY軸を回転[02]
-    angle.x += ay * speed;
-    angle.y += ax * speed;
-    
+{    
     // X軸のカメラの回転を制限[02]
     if (angle.x > maxAngleX) angle.x = maxAngleX;
     if (angle.x < minAngleX) angle.x = minAngleX;

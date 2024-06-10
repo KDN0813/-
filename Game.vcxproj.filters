@@ -57,9 +57,6 @@
     <ClInclude Include="External\DirectXTex\WICTextureLoader.h">
       <Filter>External\DirectXTex</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Input\GamePad.h">
-      <Filter>Source\Input</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Framework.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -93,9 +90,6 @@
     <ClInclude Include="Source\Graphics\Shader.h">
       <Filter>Source\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Input\Input.h">
-      <Filter>Source\Input</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\RenderContext.h">
       <Filter>Source\Graphics</Filter>
     </ClInclude>
@@ -104,9 +98,6 @@
     </ClInclude>
     <ClInclude Include="Source\Graphics\Sprite.h">
       <Filter>Source\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Input\Mouse.h">
-      <Filter>Source\Input</Filter>
     </ClInclude>
     <ClInclude Include="Source\Collision.h">
       <Filter>Source</Filter>
@@ -191,20 +182,11 @@
     <ClCompile Include="Source\Graphics\ModelResource.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Input\Input.cpp">
-      <Filter>Source\Input</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\LineRenderer.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Sprite.cpp">
       <Filter>Source\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Input\Mouse.cpp">
-      <Filter>Source\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Input\GamePad.cpp">
-      <Filter>Source\Input</Filter>
     </ClCompile>
     <ClCompile Include="Source\Collision.cpp">
       <Filter>Source</Filter>

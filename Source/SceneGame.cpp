@@ -5,8 +5,6 @@
 
 #include "StageManager.h"
 
-#include "Input/Input.h"
-
 // ‰Šú‰»[01]
 void SceneGame::Initialize()
 {

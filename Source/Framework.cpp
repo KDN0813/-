@@ -2,7 +2,6 @@
 #include <sstream>
 
 #include "Graphics/Graphics.h"
-#include "Input/Input.h"
 #include "SceneTitle.h"
 #include "SceneGame.h"
 #include "SceneManager.h"
@@ -14,7 +13,6 @@ static const int syncInterval = 1;
 // コンストラクタ
 Framework::Framework(HWND hWnd)
 	: hWnd(hWnd)
-	, input(hWnd)
 	, graphics(hWnd)
 {
 	// シーン初期化[10]
@@ -31,9 +29,6 @@ Framework::~Framework()
 // 更新処理
 void Framework::Update(float elapsedTime/*Elapsed seconds from last frame*/)
 {
-	// 入力更新処理
-	input.Update();
-
 	// シーン更新処理[10]
 	SceneManager::Instance().Update(elapsedTime);
 }
