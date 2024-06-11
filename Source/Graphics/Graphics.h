@@ -3,7 +3,6 @@
 #include <memory>
 #include <d3d11.h>
 #include <wrl.h>
-#include "Graphics/Shader.h"
 #include "Graphics/DebugRenderer.h"
 #include "Graphics/LineRenderer.h"
 #include "Graphics/ImGuiRenderer.h"
@@ -35,9 +34,6 @@ public:
 	// デプスステンシルビュー取得
 	ID3D11DepthStencilView* GetDepthStencilView() const { return depthStencilView.Get(); }
 
-	// シェーダー取得
-	Shader* GetShader() const { return shader.get(); }
-
 	// スクリーン幅取得
 	float GetScreenWidth() const { return screenWidth; }
 
@@ -66,7 +62,6 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11Texture2D>			depthStencilBuffer;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView>	depthStencilView;
 
-	std::unique_ptr<Shader>							shader;
 	std::unique_ptr<DebugRenderer>					debugRenderer;
 	std::unique_ptr<LineRenderer>					lineRenderer;
 	std::unique_ptr<ImGuiRenderer>					imguiRenderer;

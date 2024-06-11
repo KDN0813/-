@@ -2,6 +2,7 @@
 #include "SceneGame.h"
 
 #include "Camera.h"
+#include "Graphics/RenderContext.h"
 
 // 初期化[01]
 void SceneGame::Initialize()
@@ -69,11 +70,6 @@ void SceneGame::Render()
 
 	// 3Dモデル描画
 	{
-		Shader* shader = graphics.GetShader();
-
-		shader->Begin(dc, rc);
-
-		shader->End(dc);
 	}
 
 	// 3Dエフェクト描画

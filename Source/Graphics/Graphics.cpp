@@ -1,5 +1,4 @@
 #include "Misc.h"
-#include "Graphics/LambertShader.h"
 #include "Graphics/Graphics.h"
 
 
@@ -131,7 +130,6 @@ Graphics::Graphics(HWND hWnd)
 
 	// シェーダー
 	{
-		shader = std::make_unique<LambertShader>(device.Get());
 	}
 
 	// レンダラ
