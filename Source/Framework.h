@@ -1,7 +1,7 @@
 #pragma once
 
 #include <windows.h>
-#include "HighResolutionTimer.h"
+#include "System/HighResolutionTimer.h"
 #include "Graphics/Graphics.h"
 
 class Framework

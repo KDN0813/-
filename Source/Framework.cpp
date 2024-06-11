@@ -2,9 +2,9 @@
 #include <sstream>
 
 #include "Graphics/Graphics.h"
-#include "SceneTitle.h"
-#include "SceneGame.h"
-#include "SceneManager.h"
+#include "Scene/SceneTitle.h"
+#include "Scene/SceneGame.h"
+#include "Scene/SceneManager.h"
 #include "Framework.h"
 
 // ‚’¼“¯ŠúŠÔŠuİ’è
