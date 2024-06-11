@@ -5,8 +5,6 @@ void SceneManager::Update(float elpsedTime)
 {
     if (nextScene != nullptr)
     {
-        // 古いシーンを終了処理
-        //if(currentScene != nullptr) currentScene->Finalize();
         Clear();
 
         // 新しいシーンを設定

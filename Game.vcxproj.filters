@@ -31,9 +31,6 @@
     <Filter Include="Source\Scene">
       <UniqueIdentifier>{ca6d74c2-93d3-4d60-8896-3b3611a6adf8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Shader">
-      <UniqueIdentifier>{1d3f7542-7ae1-4ca7-9295-955b24450a6d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Model">
       <UniqueIdentifier>{bb3b288b-eb52-4dd8-921b-f00eef452d7b}</UniqueIdentifier>
     </Filter>
@@ -81,18 +78,6 @@
     <ClInclude Include="Source\Graphics\RenderContext.h">
       <Filter>Source\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ResourceManager.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mathf.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Camera.h">
-      <Filter>Source\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CameraController.h">
-      <Filter>Source\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="Source\SceneTitle.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
@@ -108,23 +93,11 @@
     <ClInclude Include="Source\SceneManager.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Shader.h">
-      <Filter>Source\Shader</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\LineRenderer.h">
-      <Filter>Source\Shader</Filter>
+      <Filter>Source\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\ImGuiRenderer.h">
-      <Filter>Source\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\LambertShader.h">
-      <Filter>Source\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\ModelResource.h">
-      <Filter>Source\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\Model.h">
-      <Filter>Source\Model</Filter>
+      <Filter>Source\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -158,18 +131,6 @@
     <ClCompile Include="Source\Graphics\Graphics.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ResourceManager.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mathf.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Camera.cpp">
-      <Filter>Source\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CameraController.cpp">
-      <Filter>Source\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="Source\SceneGame.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
@@ -182,20 +143,11 @@
     <ClCompile Include="Source\SceneTitle.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\ImGuiRenderer.cpp">
-      <Filter>Source\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\LambertShader.cpp">
-      <Filter>Source\Shader</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\LineRenderer.cpp">
-      <Filter>Source\Shader</Filter>
+      <Filter>Source\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Model.cpp">
-      <Filter>Source\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\ModelResource.cpp">
-      <Filter>Source\Model</Filter>
+    <ClCompile Include="Source\Graphics\ImGuiRenderer.cpp">
+      <Filter>Source\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -205,13 +157,7 @@
     <None Include="HLSL\ImGui.hlsli">
       <Filter>HLSL</Filter>
     </None>
-    <None Include="HLSL\Lambert.hlsli">
-      <Filter>HLSL</Filter>
-    </None>
     <None Include="HLSL\Line.hlsli">
-      <Filter>HLSL</Filter>
-    </None>
-    <None Include="HLSL\Sprite.hlsli">
       <Filter>HLSL</Filter>
     </None>
   </ItemGroup>
@@ -228,22 +174,10 @@
     <FxCompile Include="HLSL\ImGuiVS.hlsl">
       <Filter>HLSL</Filter>
     </FxCompile>
-    <FxCompile Include="HLSL\LambertPS.hlsl">
-      <Filter>HLSL</Filter>
-    </FxCompile>
-    <FxCompile Include="HLSL\LambertVS.hlsl">
-      <Filter>HLSL</Filter>
-    </FxCompile>
     <FxCompile Include="HLSL\LineVS.hlsl">
       <Filter>HLSL</Filter>
     </FxCompile>
     <FxCompile Include="HLSL\LinePS.hlsl">
-      <Filter>HLSL</Filter>
-    </FxCompile>
-    <FxCompile Include="HLSL\SpriteVS.hlsl">
-      <Filter>HLSL</Filter>
-    </FxCompile>
-    <FxCompile Include="HLSL\SpritePS.hlsl">
       <Filter>HLSL</Filter>
     </FxCompile>
   </ItemGroup>
