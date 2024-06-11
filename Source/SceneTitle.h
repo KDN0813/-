@@ -12,4 +12,3 @@ public:
     void Update(float elapsed_time) override;
     void Render() override;
 };
-
