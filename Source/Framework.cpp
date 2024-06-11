@@ -34,14 +34,8 @@ void Framework::Render(float elapsed_time)
 
 	ID3D11DeviceContext* dc = graphics.GetDeviceContext();
 
-	// IMGUIフレーム開始処理
-	graphics.GetImGuiRenderer()->NewFrame();
-
 	// シーン描画処理[10]
 	SceneManager::Instance().Render();
-
-	// IMGUI描画
-	graphics.GetImGuiRenderer()->Render(dc);
 
 	// バックバッファに描画した画を画面に表示する。
 	graphics.GetSwapChain()->Present(syncInterval, 0);
@@ -83,9 +77,6 @@ int Framework::Run()
 
 LRESULT CALLBACK Framework::HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	if (Graphics::Instance().GetImGuiRenderer()->HandleMessage(hWnd, msg, wParam, lParam))
-		return true;
-
 	switch (msg)
 	{
 	case WM_PAINT:

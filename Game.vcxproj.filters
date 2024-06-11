@@ -22,17 +22,11 @@
     <Filter Include="Source\Graphics">
       <UniqueIdentifier>{2ac7cb79-cb10-43d1-856f-e51f0f698e73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Stage">
-      <UniqueIdentifier>{21391ba6-9cbd-4f82-95c8-dfe1779289de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Camera">
-      <UniqueIdentifier>{a52563bd-e3c9-4717-bb85-4f2f7db36ba8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Scene">
       <UniqueIdentifier>{ca6d74c2-93d3-4d60-8896-3b3611a6adf8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Model">
-      <UniqueIdentifier>{bb3b288b-eb52-4dd8-921b-f00eef452d7b}</UniqueIdentifier>
+    <Filter Include="Source\System">
+      <UniqueIdentifier>{9dcb018c-170d-45ca-92b7-446961fd5e1b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,18 +54,6 @@
     <ClInclude Include="Source\Framework.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\HighResolutionTimer.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Logger.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Misc.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\DebugRenderer.h">
-      <Filter>Source\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Graphics.h">
       <Filter>Source\Graphics</Filter>
     </ClInclude>
@@ -93,11 +75,14 @@
     <ClInclude Include="Source\SceneManager.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\LineRenderer.h">
-      <Filter>Source\Graphics</Filter>
+    <ClInclude Include="Source\Misc.h">
+      <Filter>Source\System</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\ImGuiRenderer.h">
-      <Filter>Source\Graphics</Filter>
+    <ClInclude Include="Source\HighResolutionTimer.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Logger.h">
+      <Filter>Source\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,15 +104,6 @@
     <ClCompile Include="Source\Framework.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Logger.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Main.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\DebugRenderer.cpp">
-      <Filter>Source\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\Graphics.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
@@ -143,11 +119,11 @@
     <ClCompile Include="Source\SceneTitle.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\LineRenderer.cpp">
-      <Filter>Source\Graphics</Filter>
+    <ClCompile Include="Source\Logger.cpp">
+      <Filter>Source\System</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\ImGuiRenderer.cpp">
-      <Filter>Source\Graphics</Filter>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Source\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
