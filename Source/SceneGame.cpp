@@ -1,48 +1,21 @@
 #include "Graphics/Graphics.h"
 #include "SceneGame.h"
 
-#include "Camera.h"
 #include "Graphics/RenderContext.h"
 
 // 初期化[01]
 void SceneGame::Initialize()
 {
-	// カメラ初期設定[02]
-	Graphics& graphics = Graphics::Instance();
-	Camera& camera = Camera::Intance();
-	camera.SetLookAt(
-		DirectX::XMFLOAT3(0, 10, -10),
-		DirectX::XMFLOAT3(0, 0, 0),
-		DirectX::XMFLOAT3(0, 1, 0)
-	);
-	camera.SetPerspectiveFov(
-		DirectX::XMConvertToRadians(45),
-		graphics.GetScreenWidth() / graphics.GetScreenHeight(),
-		0.1f,
-		1000.0f
-	);
-
-	// カメラコントローラー初期化[02]
-	cameraController = new CameraController();
 }
 
 // 終了化
 void SceneGame::Finalize()
 {
-	// カメラコントローラー終了か
-	if (cameraController != nullptr)
-	{
-		delete cameraController;
-		cameraController = nullptr;
-	}
 }
 
 // 更新処理
 void SceneGame::Update(float elapsedTime)
 {
-	// カメラコントローラー更新処理
-	cameraController->SetTarget(target);
-	cameraController->Update(elapsedTime);
 }
 
 // 描画処理
@@ -62,11 +35,6 @@ void SceneGame::Render()
 	// 描画処理
 	RenderContext rc;
 	rc.lightDirection = { 0.0f, -1.0f, 0.0f, 0.0f };	// ライト方向（下方向）
-
-	// カメラのパラメータ設定
-	Camera& camera = Camera::Intance();
-	rc.view = camera.GetView();
-	rc.projection = camera.getProjection();
 
 	// 3Dモデル描画
 	{
@@ -89,7 +57,6 @@ void SceneGame::Render()
 	// 2Dスプライト描画
 	{
 		// HPゲージ描画[13]
-		RenderEnemyGauge(dc, rc.view, rc.projection);
 	}
 
 	// 2DデバッグGUI描画
@@ -99,38 +66,7 @@ void SceneGame::Render()
 		ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_FirstUseEver);
 		ImGui::SetNextWindowSize(ImVec2(300, 400), ImGuiCond_FirstUseEver);
 
-		// カメラコントローラーデバッグ描画
-		cameraController->DrawDebugGUI();
-
-		if (ImGui::Begin("Camera", nullptr, ImGuiWindowFlags_None))
-		{
-			ImGui::DragFloat3("target", &target.x, 0.01f);
-		}
-		ImGui::End();
-
 		ImGui::PopStyleColor();
 		ImGui::PopStyleColor();
 	}
-}
-
-// エネミーHP描画[13]
-void SceneGame::RenderEnemyGauge(
-	ID3D11DeviceContext* dc
-	, const DirectX::XMFLOAT4X4& view
-	, const DirectX::XMFLOAT4X4& projection
-)
-{
-	// ビューポート[13]
-	D3D11_VIEWPORT viewport;
-	UINT numViewports = 1;
-	// ラスタライザーステージにバインドされたビューポートの配列を取得
-	dc->RSGetViewports(
-		&numViewports															// ビューポートの数へのポインタ
-		, &viewport																// D3D11_VIEWPORTの配列
-	);
-
-	// 変換行列[13]
-	DirectX::XMMATRIX View			= DirectX::XMLoadFloat4x4(&view);			// ビュー行列
-	DirectX::XMMATRIX Projection	= DirectX::XMLoadFloat4x4(&projection);		// プロジェクション行列
-	DirectX::XMMATRIX world			= DirectX::XMMatrixIdentity();				// ワールド行列(ID行列)
 }

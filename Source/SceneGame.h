@@ -1,10 +1,9 @@
 #pragma once
 
-#include "CameraController.h"
 #include "Scene.h"
 
 // ゲームシーン
-class SceneGame : public Scene
+class SceneGame : public Scene 
 {
 public:
 	SceneGame() {}
@@ -23,15 +22,4 @@ public:
 	void Render() override;
 
 private:
-	// エネミーHP描画[13]
-	void RenderEnemyGauge(
-		ID3D11DeviceContext* dc
-		, const DirectX::XMFLOAT4X4& view
-		, const DirectX::XMFLOAT4X4& projection
-	);
-
-private:
-	CameraController* cameraController	= nullptr;
-	DirectX::XMFLOAT3 target{};
-
 };
