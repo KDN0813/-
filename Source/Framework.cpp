@@ -10,36 +10,27 @@
 // 垂直同期間隔設定
 static const int syncInterval = 1;
 
-// コンストラクタ
 Framework::Framework(HWND hWnd)
 	: hWnd(hWnd)
 	, graphics(hWnd)
 {
-	// シーン初期化[10]
 	SceneManager::Instance().ChangeScene(new SceneGame);
 }
 
-// デストラクタ
 Framework::~Framework()
 {
-	// シーン終了化
 	SceneManager::Instance().Clear();
 }
 
-// 更新処理
-void Framework::Update(float elapsedTime/*Elapsed seconds from last frame*/)
+void Framework::Update(float elapsed_time)
 {
-	// シーン更新処理[10]
-	SceneManager::Instance().Update(elapsedTime);
+	SceneManager::Instance().Update(elapsed_time);
 }
 
 // 描画処理
-void Framework::Render(float elapsedTime/*Elapsed seconds from last frame*/)
+void Framework::Render(float elapsed_time)
 {
-	// 別スレッド中にデバイスコンテキスが使われていた場合に
-	// 同時にアクセスしないように排他的制御する
 	std::lock_guard<std::mutex> lock(graphics.GetMutex());
-	// lock_guard変数にミューテックスを渡すことで信号待ち
 
 	ID3D11DeviceContext* dc = graphics.GetDeviceContext();
 
@@ -48,9 +39,6 @@ void Framework::Render(float elapsedTime/*Elapsed seconds from last frame*/)
 
 	// シーン描画処理[10]
 	SceneManager::Instance().Render();
-
-	// IMGUIデモウインドウ描画（IMGUI機能テスト用）
-	//ImGui::ShowDemoWindow();
 
 	// IMGUI描画
 	graphics.GetImGuiRenderer()->Render(dc);
@@ -90,7 +78,7 @@ bool IsWindowActive(HWND hwnd)
 {
 	return (GetForegroundWindow() == hwnd);
 }
-// アプリケーションループ
+
 int Framework::Run()
 {
 	MSG msg = {};
@@ -121,7 +109,6 @@ int Framework::Run()
 }
 
 
-// メッセージハンドラ
 LRESULT CALLBACK Framework::HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	if (Graphics::Instance().GetImGuiRenderer()->HandleMessage(hWnd, msg, wParam, lParam))
