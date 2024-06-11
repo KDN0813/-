@@ -14,24 +14,24 @@ DebugRenderer::DebugRenderer(ID3D11Device* device)
 
 		// ファイルのサイズを求める
 		fseek(fp, 0, SEEK_END);
-		long csoSize = ftell(fp);
+		long cso_size = ftell(fp);
 		fseek(fp, 0, SEEK_SET);
 
 		// メモリ上に頂点シェーダーデータを格納する領域を用意する
-		std::unique_ptr<u_char[]> csoData = std::make_unique<u_char[]>(csoSize);
-		fread(csoData.get(), csoSize, 1, fp);
+		std::unique_ptr<u_char[]> cso_data = std::make_unique<u_char[]>(cso_size);
+		fread(cso_data.get(), cso_size, 1, fp);
 		fclose(fp);
 
 		// 頂点シェーダー生成
-		HRESULT hr = device->CreateVertexShader(csoData.get(), csoSize, nullptr, vertexShader.GetAddressOf());
+		HRESULT hr = device->CreateVertexShader(cso_data.get(), cso_size, nullptr, this->vertex_shader.GetAddressOf());
 		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
 
 		// 入力レイアウト
-		D3D11_INPUT_ELEMENT_DESC inputElementDesc[] =
+		D3D11_INPUT_ELEMENT_DESC input_element_desc[] =
 		{
 			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT,    0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		};
-		hr = device->CreateInputLayout(inputElementDesc, ARRAYSIZE(inputElementDesc), csoData.get(), csoSize, inputLayout.GetAddressOf());
+		hr = device->CreateInputLayout(input_element_desc, ARRAYSIZE(input_element_desc), cso_data.get(), cso_size, this->input_layout.GetAddressOf());
 		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
 	}
 
@@ -44,16 +44,16 @@ DebugRenderer::DebugRenderer(ID3D11Device* device)
 
 		// ファイルのサイズを求める
 		fseek(fp, 0, SEEK_END);
-		long csoSize = ftell(fp);
+		long cso_size = ftell(fp);
 		fseek(fp, 0, SEEK_SET);
 
 		// メモリ上に頂点シェーダーデータを格納する領域を用意する
-		std::unique_ptr<u_char[]> csoData = std::make_unique<u_char[]>(csoSize);
-		fread(csoData.get(), csoSize, 1, fp);
+		std::unique_ptr<u_char[]> cso_data = std::make_unique<u_char[]>(cso_size);
+		fread(cso_data.get(), cso_size, 1, fp);
 		fclose(fp);
 
 		// ピクセルシェーダー生成
-		HRESULT hr = device->CreatePixelShader(csoData.get(), csoSize, nullptr, pixelShader.GetAddressOf());
+		HRESULT hr = device->CreatePixelShader(cso_data.get(), cso_size, nullptr, this->pixel_shader.GetAddressOf());
 		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
 	}
 
@@ -69,7 +69,7 @@ DebugRenderer::DebugRenderer(ID3D11Device* device)
 		desc.ByteWidth = sizeof(CbMesh);
 		desc.StructureByteStride = 0;
 
-		HRESULT hr = device->CreateBuffer(&desc, 0, constantBuffer.GetAddressOf());
+		HRESULT hr = device->CreateBuffer(&desc, 0, this->constant_buffer.GetAddressOf());
 		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
 	}
 
@@ -88,7 +88,7 @@ DebugRenderer::DebugRenderer(ID3D11Device* device)
 		desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
 		desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
-		HRESULT hr = device->CreateBlendState(&desc, blendState.GetAddressOf());
+		HRESULT hr = device->CreateBlendState(&desc, this->blend_state.GetAddressOf());
 		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
 	}
 
@@ -100,7 +100,7 @@ DebugRenderer::DebugRenderer(ID3D11Device* device)
 		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 		desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
 
-		HRESULT hr = device->CreateDepthStencilState(&desc, depthStencilState.GetAddressOf());
+		HRESULT hr = device->CreateDepthStencilState(&desc, this->depth_stencil_state.GetAddressOf());
 		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
 	}
 
@@ -119,7 +119,7 @@ DebugRenderer::DebugRenderer(ID3D11Device* device)
 		desc.CullMode = D3D11_CULL_NONE;
 		desc.AntialiasedLineEnable = false;
 
-		HRESULT hr = device->CreateRasterizerState(&desc, rasterizerState.GetAddressOf());
+		HRESULT hr = device->CreateRasterizerState(&desc, this->rasterizer_state.GetAddressOf());
 		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
 	}
 
@@ -134,19 +134,19 @@ DebugRenderer::DebugRenderer(ID3D11Device* device)
 void DebugRenderer::Render(ID3D11DeviceContext* context, const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection)
 {
 	// シェーダー設定
-	context->VSSetShader(vertexShader.Get(), nullptr, 0);
-	context->PSSetShader(pixelShader.Get(), nullptr, 0);
-	context->IASetInputLayout(inputLayout.Get());
+	context->VSSetShader(this->vertex_shader.Get(), nullptr, 0);
+	context->PSSetShader(this->pixel_shader.Get(), nullptr, 0);
+	context->IASetInputLayout(this->input_layout.Get());
 
 	// 定数バッファ設定
-	context->VSSetConstantBuffers(0, 1, constantBuffer.GetAddressOf());
+	context->VSSetConstantBuffers(0, 1, this->constant_buffer.GetAddressOf());
 	//context->PSSetConstantBuffers(0, 1, constantBuffer.GetAddressOf());
 
 	// レンダーステート設定
-	const float blendFactor[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	context->OMSetBlendState(blendState.Get(), blendFactor, 0xFFFFFFFF);
-	context->OMSetDepthStencilState(depthStencilState.Get(), 0);
-	context->RSSetState(rasterizerState.Get());
+	const float blend_factor[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	context->OMSetBlendState(this->blend_state.Get(), blend_factor, 0xFFFFFFFF);
+	context->OMSetDepthStencilState(this->depth_stencil_state.Get(), 0);
+	context->RSSetState(this->rasterizer_state.Get());
 
 	// ビュープロジェクション行列作成
 	DirectX::XMMATRIX V = DirectX::XMLoadFloat4x4(&view);
@@ -159,8 +159,8 @@ void DebugRenderer::Render(ID3D11DeviceContext* context, const DirectX::XMFLOAT4
 	context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
 
 	// 球描画
-	context->IASetVertexBuffers(0, 1, sphereVertexBuffer.GetAddressOf(), &stride, &offset);
-	for (const Sphere& sphere : spheres)
+	context->IASetVertexBuffers(0, 1, this->sphere_vertex_buffer.GetAddressOf(), &stride, &offset);
+	for (const Sphere& sphere : this->spheres)
 	{
 		// ワールドビュープロジェクション行列作成
 		DirectX::XMMATRIX S = DirectX::XMMatrixScaling(sphere.radius, sphere.radius, sphere.radius);
@@ -173,14 +173,14 @@ void DebugRenderer::Render(ID3D11DeviceContext* context, const DirectX::XMFLOAT4
 		cbMesh.color = sphere.color;
 		DirectX::XMStoreFloat4x4(&cbMesh.wvp, WVP);
 
-		context->UpdateSubresource(constantBuffer.Get(), 0, 0, &cbMesh, 0, 0);
-		context->Draw(sphereVertexCount, 0);
+		context->UpdateSubresource(this->constant_buffer.Get(), 0, 0, &cbMesh, 0, 0);
+		context->Draw(this->sphere_vertex_count, 0);
 	}
 	spheres.clear();
 
 	// 円柱描画
-	context->IASetVertexBuffers(0, 1, cylinderVertexBuffer.GetAddressOf(), &stride, &offset);
-	for (const Cylinder& cylinder : cylinders)
+	context->IASetVertexBuffers(0, 1, this->cylinder_vertex_buffer.GetAddressOf(), &stride, &offset);
+	for (const Cylinder& cylinder : this->cylinders)
 	{
 		// ワールドビュープロジェクション行列作成
 		DirectX::XMMATRIX S = DirectX::XMMatrixScaling(cylinder.radius, cylinder.height, cylinder.radius);
@@ -193,10 +193,10 @@ void DebugRenderer::Render(ID3D11DeviceContext* context, const DirectX::XMFLOAT4
 		cbMesh.color = cylinder.color;
 		DirectX::XMStoreFloat4x4(&cbMesh.wvp, WVP);
 
-		context->UpdateSubresource(constantBuffer.Get(), 0, 0, &cbMesh, 0, 0);
-		context->Draw(cylinderVertexCount, 0);
+		context->UpdateSubresource(this->constant_buffer.Get(), 0, 0, &cbMesh, 0, 0);
+		context->Draw(this->cylinder_vertex_count, 0);
 	}
-	cylinders.clear();
+	this->cylinders.clear();
 }
 
 // 球描画
@@ -206,7 +206,7 @@ void DebugRenderer::DrawSphere(const DirectX::XMFLOAT3& center, float radius, co
 	sphere.center = center;
 	sphere.radius = radius;
 	sphere.color = color;
-	spheres.emplace_back(sphere);
+	this->spheres.emplace_back(sphere);
 }
 
 // 円柱描画
@@ -217,35 +217,35 @@ void DebugRenderer::DrawCylinder(const DirectX::XMFLOAT3& position, float radius
 	cylinder.radius = radius;
 	cylinder.height = height;
 	cylinder.color = color;
-	cylinders.emplace_back(cylinder);
+	this->cylinders.emplace_back(cylinder);
 }
 
 // 球メッシュ作成
 void DebugRenderer::CreateSphereMesh(ID3D11Device* device, float radius, int slices, int stacks)
 {
-	sphereVertexCount = stacks * slices * 2 + slices * stacks * 2;
-	std::unique_ptr<DirectX::XMFLOAT3[]> vertices = std::make_unique<DirectX::XMFLOAT3[]>(sphereVertexCount);
+	this->sphere_vertex_count = stacks * slices * 2 + slices * stacks * 2;
+	std::unique_ptr<DirectX::XMFLOAT3[]> vertices = std::make_unique<DirectX::XMFLOAT3[]>(this->sphere_vertex_count);
 
-	float phiStep = DirectX::XM_PI / stacks;
-	float thetaStep = DirectX::XM_2PI / slices;
+	float phi_step = DirectX::XM_PI / stacks;
+	float theta_step = DirectX::XM_2PI / slices;
 
 	DirectX::XMFLOAT3* p = vertices.get();
 	
 	for (int i = 0; i < stacks; ++i)
 	{
-		float phi = i * phiStep;
+		float phi = i * phi_step;
 		float y = radius * cosf(phi);
 		float r = radius * sinf(phi);
 
 		for (int j = 0; j < slices; ++j)
 		{
-			float theta = j * thetaStep;
+			float theta = j * theta_step;
 			p->x = r * sinf(theta);
 			p->y = y;
 			p->z = r * cosf(theta);
 			p++;
 
-			theta += thetaStep;
+			theta += theta_step;
 
 			p->x = r * sinf(theta);
 			p->y = y;
@@ -254,19 +254,19 @@ void DebugRenderer::CreateSphereMesh(ID3D11Device* device, float radius, int sli
 		}
 	}
 
-	thetaStep = DirectX::XM_2PI / stacks;
+	theta_step = DirectX::XM_2PI / stacks;
 	for (int i = 0; i < slices; ++i)
 	{
-		DirectX::XMMATRIX M = DirectX::XMMatrixRotationY(i * thetaStep);
+		DirectX::XMMATRIX M = DirectX::XMMatrixRotationY(i * theta_step);
 		for (int j = 0; j < stacks; ++j)
 		{
-			float theta = j * thetaStep;
+			float theta = j * theta_step;
 			DirectX::XMVECTOR V1 = DirectX::XMVectorSet(radius * sinf(theta), radius * cosf(theta), 0.0f, 1.0f);
 			DirectX::XMVECTOR P1 = DirectX::XMVector3TransformCoord(V1, M);
 			DirectX::XMStoreFloat3(p++, P1);
 
 			int n = (j + 1) % stacks;
-			theta += thetaStep;
+			theta += theta_step;
 
 			DirectX::XMVECTOR V2 = DirectX::XMVectorSet(radius * sinf(theta), radius * cosf(theta), 0.0f, 1.0f);
 			DirectX::XMVECTOR P2 = DirectX::XMVector3TransformCoord(V2, M);
@@ -277,19 +277,19 @@ void DebugRenderer::CreateSphereMesh(ID3D11Device* device, float radius, int sli
 	// 頂点バッファ
 	{
 		D3D11_BUFFER_DESC desc = {};
-		D3D11_SUBRESOURCE_DATA subresourceData = {};
+		D3D11_SUBRESOURCE_DATA subresource_data = {};
 
-		desc.ByteWidth = static_cast<UINT>(sizeof(DirectX::XMFLOAT3) * sphereVertexCount);
+		desc.ByteWidth = static_cast<UINT>(sizeof(DirectX::XMFLOAT3) * sphere_vertex_count);
 		desc.Usage = D3D11_USAGE_IMMUTABLE;	// D3D11_USAGE_DEFAULT;
 		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 		desc.CPUAccessFlags = 0;
 		desc.MiscFlags = 0;
 		desc.StructureByteStride = 0;
-		subresourceData.pSysMem = vertices.get();
-		subresourceData.SysMemPitch = 0;
-		subresourceData.SysMemSlicePitch = 0;
+		subresource_data.pSysMem = vertices.get();
+		subresource_data.SysMemPitch = 0;
+		subresource_data.SysMemSlicePitch = 0;
 
-		HRESULT hr = device->CreateBuffer(&desc, &subresourceData, sphereVertexBuffer.GetAddressOf());
+		HRESULT hr = device->CreateBuffer(&desc, &subresource_data, this->sphere_vertex_buffer.GetAddressOf());
 		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
 	}
 }
@@ -297,15 +297,15 @@ void DebugRenderer::CreateSphereMesh(ID3D11Device* device, float radius, int sli
 // 円柱メッシュ作成
 void DebugRenderer::CreateCylinderMesh(ID3D11Device* device, float radius1, float radius2, float start, float height, int slices, int stacks)
 {
-	cylinderVertexCount = 2 * slices * (stacks + 1) + 2 * slices;
-	std::unique_ptr<DirectX::XMFLOAT3[]> vertices = std::make_unique<DirectX::XMFLOAT3[]>(cylinderVertexCount);
+	this->cylinder_vertex_count = 2 * slices * (stacks + 1) + 2 * slices;
+	std::unique_ptr<DirectX::XMFLOAT3[]> vertices = std::make_unique<DirectX::XMFLOAT3[]>(this->cylinder_vertex_count);
 
 	DirectX::XMFLOAT3* p = vertices.get();
 
-	float stackHeight = height / stacks;
-	float radiusStep = (radius2 - radius1) / stacks;
+	float stack_height = height / stacks;
+	float radius_step = (radius2 - radius1) / stacks;
 
-	// vertices of ring
+	// リングの頂点
 	float dTheta = DirectX::XM_2PI / slices;
 
 	for (int i = 0; i < slices; ++i)
@@ -320,8 +320,8 @@ void DebugRenderer::CreateCylinderMesh(ID3D11Device* device, float radius1, floa
 
 		for (int j = 0; j <= stacks; ++j)
 		{
-			float y = start + j * stackHeight;
-			float r = radius1 + j * radiusStep;
+			float y = start + j * stack_height;
+			float r = radius1 + j * radius_step;
 
 			p->x = r * c1;
 			p->y = y;
@@ -348,19 +348,19 @@ void DebugRenderer::CreateCylinderMesh(ID3D11Device* device, float radius1, floa
 	// 頂点バッファ
 	{
 		D3D11_BUFFER_DESC desc = {};
-		D3D11_SUBRESOURCE_DATA subresourceData = {};
+		D3D11_SUBRESOURCE_DATA subresource_data = {};
 
-		desc.ByteWidth = static_cast<UINT>(sizeof(DirectX::XMFLOAT3) * cylinderVertexCount);
+		desc.ByteWidth = static_cast<UINT>(sizeof(DirectX::XMFLOAT3) * this->cylinder_vertex_count);
 		desc.Usage = D3D11_USAGE_IMMUTABLE;	// D3D11_USAGE_DEFAULT;
 		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 		desc.CPUAccessFlags = 0;
 		desc.MiscFlags = 0;
 		desc.StructureByteStride = 0;
-		subresourceData.pSysMem = vertices.get();
-		subresourceData.SysMemPitch = 0;
-		subresourceData.SysMemSlicePitch = 0;
+		subresource_data.pSysMem = vertices.get();
+		subresource_data.SysMemPitch = 0;
+		subresource_data.SysMemSlicePitch = 0;
 
-		HRESULT hr = device->CreateBuffer(&desc, &subresourceData, cylinderVertexBuffer.GetAddressOf());
+		HRESULT hr = device->CreateBuffer(&desc, &subresource_data, this->cylinder_vertex_buffer.GetAddressOf());
 		_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
 	}
 }

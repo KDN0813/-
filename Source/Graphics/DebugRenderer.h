@@ -50,21 +50,21 @@ private:
 		float				height;
 	};
 
-	Microsoft::WRL::ComPtr<ID3D11Buffer>			sphereVertexBuffer;
-	Microsoft::WRL::ComPtr<ID3D11Buffer>			cylinderVertexBuffer;
-	Microsoft::WRL::ComPtr<ID3D11Buffer>			constantBuffer;
+	Microsoft::WRL::ComPtr<ID3D11Buffer>			sphere_vertex_buffer;
+	Microsoft::WRL::ComPtr<ID3D11Buffer>			cylinder_vertex_buffer;
+	Microsoft::WRL::ComPtr<ID3D11Buffer>			constant_buffer;
 
-	Microsoft::WRL::ComPtr<ID3D11VertexShader>		vertexShader;
-	Microsoft::WRL::ComPtr<ID3D11PixelShader>		pixelShader;
-	Microsoft::WRL::ComPtr<ID3D11InputLayout>		inputLayout;
+	Microsoft::WRL::ComPtr<ID3D11VertexShader>		vertex_shader;
+	Microsoft::WRL::ComPtr<ID3D11PixelShader>		pixel_shader;
+	Microsoft::WRL::ComPtr<ID3D11InputLayout>		input_layout;
 
-	Microsoft::WRL::ComPtr<ID3D11BlendState>		blendState;
-	Microsoft::WRL::ComPtr<ID3D11RasterizerState>	rasterizerState;
-	Microsoft::WRL::ComPtr<ID3D11DepthStencilState>	depthStencilState;
+	Microsoft::WRL::ComPtr<ID3D11BlendState>		blend_state;
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState>	rasterizer_state;
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilState>	depth_stencil_state;
 
 	std::vector<Sphere>		spheres;
 	std::vector<Cylinder>	cylinders;
 
-	UINT	sphereVertexCount = 0;
-	UINT	cylinderVertexCount = 0;
+	UINT	sphere_vertex_count = 0;
+	UINT	cylinder_vertex_count = 0;
 };
