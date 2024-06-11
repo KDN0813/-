@@ -126,35 +126,4 @@
       <Filter>Source\System</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="HLSL\Debug.hlsli">
-      <Filter>HLSL</Filter>
-    </None>
-    <None Include="HLSL\ImGui.hlsli">
-      <Filter>HLSL</Filter>
-    </None>
-    <None Include="HLSL\Line.hlsli">
-      <Filter>HLSL</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="HLSL\DebugPS.hlsl">
-      <Filter>HLSL</Filter>
-    </FxCompile>
-    <FxCompile Include="HLSL\DebugVS.hlsl">
-      <Filter>HLSL</Filter>
-    </FxCompile>
-    <FxCompile Include="HLSL\ImGuiPS.hlsl">
-      <Filter>HLSL</Filter>
-    </FxCompile>
-    <FxCompile Include="HLSL\ImGuiVS.hlsl">
-      <Filter>HLSL</Filter>
-    </FxCompile>
-    <FxCompile Include="HLSL\LineVS.hlsl">
-      <Filter>HLSL</Filter>
-    </FxCompile>
-    <FxCompile Include="HLSL\LinePS.hlsl">
-      <Filter>HLSL</Filter>
-    </FxCompile>
-  </ItemGroup>
 </Project>

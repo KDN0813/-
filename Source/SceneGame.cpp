@@ -1,8 +1,6 @@
 #include "Graphics/Graphics.h"
 #include "SceneGame.h"
 
-#include "Graphics/RenderContext.h"
-
 void SceneGame::Initialize()
 {
 }
@@ -26,23 +24,4 @@ void SceneGame::Render()
 	dc->ClearRenderTargetView(rtv, color);
 	dc->ClearDepthStencilView(dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	dc->OMSetRenderTargets(1, &rtv, dsv);
-
-	RenderContext rc;
-
-	// 3Dモデル描画
-	{
-	}
-
-	// 3Dエフェクト描画
-	{
-	}
-
-	// 3Dデバッグ描画
-	{
-	}
-
-
-	// 2DデバッグGUI描画
-	{
-	}
 }
